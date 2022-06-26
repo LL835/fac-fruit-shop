@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: rgb(54, 69, 79)
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.section-heading {
+    margin-bottom: 20px;
+}
+
+.green-italics{
+    font-style: italic;
+    color: #5FD068
+}
+
+.blue-italics{
+    font-style: italic;
+    color: rgb(54, 69, 79);
+}
+
+/* This section styles the fruit shop section */
+
+.fruit-shop{
+    padding: 15px;
+    flex-grow: 1;
+}
+
+.fruits {
+    display: flex;
+}
+
+.fruit{
+    padding: 10px;
+    margin: 5px;
+    border: solid 1px rgb(211,211,211, 0.8);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.image-container{
+    width: 200px;
+    height: 200px;
+}
+
+img{
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+}
+
+.fruit-name{
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin: 10px 0
+}
+
+.add-to-basket-btn {
+    cursor: pointer;
+    width: 100%;
+    padding: 4px 0;
+    border: none;
+    color: white;
+    background: #5FD068;
+}
+
+button:hover{
+    background: #4B8673;
+}
+
+/* This section styles the fruit basket-section */
+
+.fruit-basket-heading {
+    color: white;
+}
+
+.fruit-basket {
+    background: #5FD068;
+    padding: 15px;
+    width: 450px;
+}
+
+
+.basket {
+    background: white;
+    font-size: 1.1rem;
+    border: solid 1px rgb(211,211,211, 0.8);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 8px;
+    max-width: 400px;
+    padding: 10px;
+    margin: 0 auto;
+}
