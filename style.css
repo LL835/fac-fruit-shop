@@ -88,10 +88,49 @@ button:hover{
 
 .basket {
     background: white;
-    font-size: 1.1rem;
     border: solid 1px rgb(211,211,211, 0.8);
     box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 8px;
     max-width: 400px;
     padding: 10px;
     margin: 0 auto;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.column-heading {
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+.item-column{
+    width: 30%;
+    display: flex;
+}
+
+.quantity-column{
+    width: 35%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.remove-items-column{
+    width: 30%;
+}
+
+.change-qty-btn {
+    padding: 2px 6px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    background: #5FD068;
+}
+
+.total-quantity{
+    justify-content: center;
+    display: flex;
 }
