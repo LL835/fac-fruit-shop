@@ -3,13 +3,13 @@ myBasket = {apple: 0, orange: 0};
 const addToBasketButtons = document.querySelectorAll(".add-to-basket-btn")
 for (let i = 0; i < addToBasketButtons.length; i++){
     addToBasketButtons[i].addEventListener("click",  (event) => {
-        addFruitToBasket(event.target)
+        const fruit = event.target.previousElementSibling.innerText.toLowerCase()
+        addFruitToBasket(fruit)
     }
     )
 }
 
-function addFruitToBasket(event){
-    const fruit = event.previousElementSibling.innerText.toLowerCase();
+function addFruitToBasket(fruit){
     myBasket[`${fruit}`] += 1;
     updateBasket()    
 }
@@ -33,9 +33,9 @@ function updateBasket(){
                 <div class="selected-fruit">Apple</div>
             </div>
             <div class="column quantity-column">
-                <button class="change-qty-btn"> - </button>
+                <button class="change-qty-btn decrease-qty"> - </button>
                 <div class="fruit-quantity apple-quantity">${myBasket["apple"]}</div>
-                <button class="change-qty-btn"> + </button>
+                <button class="change-qty-btn increase-qty"> + </button>
             </div>
             <div class="column remove-items-column">
                 <button class="change-qty-btn remove-from-basket-btn">Remove</button>
@@ -47,9 +47,9 @@ function updateBasket(){
                 <div class="selected-fruit">Orange</div>
             </div>
             <div class="column quantity-column">
-                <button class="change-qty-btn">-</button>
+                <button class="change-qty-btn decrease-qty"> - </button>
                 <div class="fruit-quantity orange-quantity">${myBasket["orange"]}</div>
-                <button class="change-qty-btn"> + </button>
+                <button class="change-qty-btn increase-qty"> + </button>
             </div>
             <div class="column remove-items-column">
                 <button class="change-qty-btn remove-from-basket-btn">Remove</button>
@@ -62,8 +62,9 @@ function updateBasket(){
             <div class="column remove-items-column"></div>
         </div>`;
         basketContents.innerHTML = contents;
-        basket.appendChild(basketContents)
-    } else if (totalQuantity === 0){ // if the total quantity is 0, remove the basket and show a message to the user saying the basket is empty
+        basket.appendChild(basketContents);
+        addEventListenersForNewButtons()
+    }  if (totalQuantity === 0){ // if the total quantity is 0, remove the basket and show a message to the user saying the basket is empty
         const rows = document.querySelectorAll(".row")
         for (let i = 0; i < rows.length; i++){
             rows[i].remove();
@@ -89,4 +90,47 @@ function calculateTotalQuantity(){
         currentTotal += totalQuantity[i]
     }
     return currentTotal
+}
+
+function addEventListenersForNewButtons(){
+    const removeButtons = document.querySelectorAll(".remove-from-basket-btn");
+    const increaseQuantity = document.querySelectorAll(".increase-qty");
+    const decreaseQuantity = document.querySelectorAll(".decrease-qty");
+
+    for (let i = 0; i < increaseQuantity.length; i++){
+        increaseQuantity[i].addEventListener("click", (event) => {
+            const parent = event.target.parentNode.parentNode;
+            const selected = parent.querySelector(".selected-fruit").innerHTML.toLowerCase()
+            addFruitToBasket(selected);
+        })
+    }
+
+    for (let i = 0; i < decreaseQuantity.length; i++){
+        decreaseQuantity[i].addEventListener("click", (event) => {
+            const parent = event.target.parentNode.parentNode;
+            const selected = parent.querySelector(".selected-fruit").innerHTML.toLowerCase()
+            decreaseFruitQuantity(selected);
+        })
+    }
+
+    for (let i = 0; i < removeButtons.length; i++){
+        removeButtons[i].addEventListener("click", (event) => {
+            const parent = event.target.parentNode.parentNode;
+            const selected = parent.querySelector(".selected-fruit").innerHTML.toLowerCase()
+            removeFruit(selected);
+        })
+    }
+
+}
+
+function decreaseFruitQuantity(fruit){
+    if (myBasket[`${fruit}`] != 0){
+        myBasket[`${fruit}`] -= 1;
+    }
+    updateBasket()
+}
+
+function removeFruit(fruit){
+    myBasket[`${fruit}`] = 0;
+    updateBasket()
 }
