@@ -34,6 +34,7 @@ body {
 
 .fruits {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .fruit{
@@ -108,7 +109,7 @@ button:hover{
 }
 
 .item-column{
-    width: 30%;
+    width: 28%;
     display: flex;
 }
 
@@ -139,4 +140,23 @@ button:hover{
 
 .hidden{
     display: none;
+}
+
+@media (max-width: 950px){
+    body{
+        flex-direction: column;
+    }
+
+    .fruit-basket{
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px){
+    .fruit-basket{
+        padding: 5px;
+    }
+    .basket{
+        max-width: 300px
+    }
 }
