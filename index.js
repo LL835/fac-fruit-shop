@@ -1,4 +1,4 @@
-myBasket = {apple: 0, orange: 0, pear: 0, banana: 0};
+myBasket = {apple: 0, orange: 0, pear: 0, banana: 0, kiwi: 0, grapes: 0, peach: 0, avocado: 0};
 let lastButtonClicked = "";
 
 const addToBasketButtons = document.querySelectorAll(".add-to-basket-btn")
@@ -115,6 +115,62 @@ function updateBasket(){
         </div>
 
         <div class="row">
+            <div class="column item-column">
+                <div class="selected-fruit">Kiwi</div>
+            </div>
+            <div class="column quantity-column">
+                <button class="change-qty-btn decrease-qty"> - </button>
+                <div class="fruit-quantity kiwi-quantity">${myBasket["kiwi"]}</div>
+                <button class="change-qty-btn increase-qty"> + </button>
+            </div>
+            <div class="column remove-items-column">
+                <button class="change-qty-btn remove-from-basket-btn">Remove</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column item-column">
+                <div class="selected-fruit">Grapes</div>
+            </div>
+            <div class="column quantity-column">
+                <button class="change-qty-btn decrease-qty"> - </button>
+                <div class="fruit-quantity grapes-quantity">${myBasket["grapes"]}</div>
+                <button class="change-qty-btn increase-qty"> + </button>
+            </div>
+            <div class="column remove-items-column">
+                <button class="change-qty-btn remove-from-basket-btn">Remove</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column item-column">
+                <div class="selected-fruit">Peach</div>
+            </div>
+            <div class="column quantity-column">
+                <button class="change-qty-btn decrease-qty"> - </button>
+                <div class="fruit-quantity peach-quantity">${myBasket["peach"]}</div>
+                <button class="change-qty-btn increase-qty"> + </button>
+            </div>
+            <div class="column remove-items-column">
+                <button class="change-qty-btn remove-from-basket-btn">Remove</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column item-column">
+                <div class="selected-fruit">Avocado</div>
+            </div>
+            <div class="column quantity-column">
+                <button class="change-qty-btn decrease-qty"> - </button>
+                <div class="fruit-quantity avocado-quantity">${myBasket["avocado"]}</div>
+                <button class="change-qty-btn increase-qty"> + </button>
+            </div>
+            <div class="column remove-items-column">
+                <button class="change-qty-btn remove-from-basket-btn">Remove</button>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="column-heading item-column">Total</div>
             <div class=" quantity-column total-quantity">${totalQuantity}</div>
             <div class="column remove-items-column"></div>
@@ -129,12 +185,19 @@ function updateBasket(){
     const orangeQuantity = basket.querySelector(".orange-quantity");
     const pearQuantity = basket.querySelector(".pear-quantity");
     const bananaQuantity = basket.querySelector(".banana-quantity");
-
+    const kiwiQuantity = basket.querySelector(".kiwi-quantity");
+    const grapesQuantity = basket.querySelector(".grapes-quantity");
+    const peachQuantity = basket.querySelector(".peach-quantity");
+    const avocadoQuantity = basket.querySelector(".avocado-quantity");
 
     appleQuantity.textContent = myBasket["apple"];
     orangeQuantity.textContent = myBasket["orange"];
     pearQuantity.textContent = myBasket["pear"];
     bananaQuantity.textContent = myBasket["banana"];
+    kiwiQuantity.textContent = myBasket["kiwi"];
+    grapesQuantity.textContent = myBasket["grapes"];
+    peachQuantity.textContent = myBasket["peach"];
+    avocadoQuantity.textContent = myBasket["avocado"];
     totalNumOfFruits.textContent = totalQuantity
 }
 
