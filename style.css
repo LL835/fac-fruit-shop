@@ -136,3 +136,7 @@ button:hover{
     justify-content: center;
     display: flex;
 }
+
+.hidden{
+    display: none;
+}

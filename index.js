@@ -1,4 +1,5 @@
 myBasket = {apple: 0, orange: 0};
+let lastButtonClicked = "";
 
 const addToBasketButtons = document.querySelectorAll(".add-to-basket-btn")
 for (let i = 0; i < addToBasketButtons.length; i++){
@@ -11,6 +12,7 @@ for (let i = 0; i < addToBasketButtons.length; i++){
 
 function addFruitToBasket(fruit){
     myBasket[`${fruit}`] += 1;
+    lastButtonClicked = "increase"
     updateBasket()    
 }
 
@@ -18,9 +20,14 @@ function updateBasket(){
     const totalQuantity = calculateTotalQuantity()
     const emptyBasketMessage = document.querySelector(".empty-basket-message");
     const basket = document.querySelector(".basket");
+    const basketItems = document.querySelector(".basket-items")
     if (totalQuantity === 1){ //the first time an item is added to the basket, create an element displaying the basket's contents and remove the empty-basket message
-        emptyBasketMessage.remove();
+        // emptyBasketMessage.remove();
+        // emptyBasketMessage.classList.toggle("hidden")
+        checkForEmptyBasketMessage()
+        if(lastButtonClicked === "increase"){
         const basketContents = document.createElement("div");
+        basketContents.classList.add("basket-items")
         const contents = 
         `<div class="row">
             <div class="column-heading item-column">Item</div>
@@ -64,7 +71,16 @@ function updateBasket(){
         basketContents.innerHTML = contents;
         basket.appendChild(basketContents);
         addEventListenersForNewButtons()
-    }  if (totalQuantity === 0){ // if the total quantity is 0, remove the basket and show a message to the user saying the basket is empty
+        }
+        else if (lastButtonClicked != "increase"){
+            const totalNumOfFruits = document.querySelector(".total-quantity")
+            const appleQuantity = basket.querySelector(".apple-quantity");
+            const orangeQuantity = basket.querySelector(".orange-quantity");
+            appleQuantity.textContent = myBasket["apple"];
+            orangeQuantity.textContent = myBasket["orange"];
+            totalNumOfFruits.textContent = totalQuantity
+        }
+    }  else if (totalQuantity === 0){ // if the total quantity is 0, remove the basket and show a message to the user saying the basket is empty
         const rows = document.querySelectorAll(".row")
         for (let i = 0; i < rows.length; i++){
             rows[i].remove();
@@ -72,7 +88,8 @@ function updateBasket(){
         const newEmptyBasketMessage = document.createElement("div");
         newEmptyBasketMessage.classList.add("empty-basket-message");
         newEmptyBasketMessage.innerText = "Your basket is empty."
-        basket.appendChild(newEmptyBasketMessage);
+        basket.appendChild(newEmptyBasketMessage)
+        tableExists = false;
     } else {  // if the total quantity is greater than 1, update the table's values
         const totalNumOfFruits = document.querySelector(".total-quantity")
         const appleQuantity = basket.querySelector(".apple-quantity");
@@ -124,13 +141,27 @@ function addEventListenersForNewButtons(){
 }
 
 function decreaseFruitQuantity(fruit){
+    totalNumOfFruits = calculateTotalQuantity()
     if (myBasket[`${fruit}`] != 0){
         myBasket[`${fruit}`] -= 1;
     }
+    lastButtonClicked = "decrease"
+    checkForEmptyBasketMessage()
     updateBasket()
 }
 
 function removeFruit(fruit){
     myBasket[`${fruit}`] = 0;
+    lastButtonClicked = "remove"
     updateBasket()
 }
+
+function checkForEmptyBasketMessage(){
+    const basket = document.querySelector(".basket");
+    const emptyBasketMessage = document.querySelector(".empty-basket-message");
+    if (emptyBasketMessage != null){
+        emptyBasketMessage.remove()
+    }
+}
+
+
