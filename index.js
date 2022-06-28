@@ -1,4 +1,4 @@
-myBasket = {apple: 0, orange: 0};
+myBasket = {apple: 0, orange: 0, pear: 0, banana: 0};
 let lastButtonClicked = "";
 
 const addToBasketButtons = document.querySelectorAll(".add-to-basket-btn")
@@ -87,6 +87,34 @@ function updateBasket(){
         </div>
 
         <div class="row">
+            <div class="column item-column">
+                <div class="selected-fruit">Pear</div>
+            </div>
+            <div class="column quantity-column">
+                <button class="change-qty-btn decrease-qty"> - </button>
+                <div class="fruit-quantity pear-quantity">${myBasket["pear"]}</div>
+                <button class="change-qty-btn increase-qty"> + </button>
+            </div>
+            <div class="column remove-items-column">
+                <button class="change-qty-btn remove-from-basket-btn">Remove</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column item-column">
+                <div class="selected-fruit">Banana</div>
+            </div>
+            <div class="column quantity-column">
+                <button class="change-qty-btn decrease-qty"> - </button>
+                <div class="fruit-quantity banana-quantity">${myBasket["banana"]}</div>
+                <button class="change-qty-btn increase-qty"> + </button>
+            </div>
+            <div class="column remove-items-column">
+                <button class="change-qty-btn remove-from-basket-btn">Remove</button>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="column-heading item-column">Total</div>
             <div class=" quantity-column total-quantity">${totalQuantity}</div>
             <div class="column remove-items-column"></div>
@@ -99,8 +127,14 @@ function updateBasket(){
     const totalNumOfFruits = document.querySelector(".total-quantity")
     const appleQuantity = basket.querySelector(".apple-quantity");
     const orangeQuantity = basket.querySelector(".orange-quantity");
+    const pearQuantity = basket.querySelector(".pear-quantity");
+    const bananaQuantity = basket.querySelector(".banana-quantity");
+
+
     appleQuantity.textContent = myBasket["apple"];
     orangeQuantity.textContent = myBasket["orange"];
+    pearQuantity.textContent = myBasket["pear"];
+    bananaQuantity.textContent = myBasket["banana"];
     totalNumOfFruits.textContent = totalQuantity
 }
 
