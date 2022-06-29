@@ -31,6 +31,20 @@ function removeFruit(fruit){
     updateBasket()
 }
 
+function purchaseFruits(){
+    const totalItemsPurchased = calculateTotalQuantity();
+    let noun = "";
+    if (totalItemsPurchased === 1){
+        noun = "fruit"
+    } else {noun = "fruits"};
+    alert(`You bought ${totalItemsPurchased} ${noun}.`)
+    const setToZero= Object.keys(myBasket);
+    for (let i = 0; i < setToZero.length; i++){
+        myBasket[`${setToZero[i]}`] = 0
+    }
+    updateBasket()    
+}
+
 function updateBasket(){
     const basket = document.querySelector(".basket");
     const totalQuantity = calculateTotalQuantity()
@@ -173,7 +187,7 @@ function updateBasket(){
         <div class="row">
             <div class="column-heading item-column">Total</div>
             <div class=" quantity-column total-quantity">${totalQuantity}</div>
-            <div class="column remove-items-column"></div>
+            <div class="column remove-items-column"><button class="purchase-btn">Purchase</button></div>
         </div>`;
         basketContents.innerHTML = contents;
         basket.appendChild(basketContents);
@@ -214,6 +228,7 @@ function addEventListenersForNewButtons(){
     const removeButtons = document.querySelectorAll(".remove-from-basket-btn");
     const increaseQuantity = document.querySelectorAll(".increase-qty");
     const decreaseQuantity = document.querySelectorAll(".decrease-qty");
+    const purchaseItems = document.querySelector(".purchase-btn");
 
     for (let i = 0; i < increaseQuantity.length; i++){
         increaseQuantity[i].addEventListener("click", (event) => {
@@ -238,6 +253,9 @@ function addEventListenersForNewButtons(){
             removeFruit(selected);
         })
     }
+
+    purchaseItems.addEventListener("click", purchaseFruits)
+
 }
 
 
